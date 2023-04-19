@@ -1,0 +1,93 @@
+import java.util.Scanner;
+import java.util.Random;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+
+        while (true) {
+            System.out.println("Welcome to the program! Please select an option:");
+            System.out.println("1. Calculator");
+            System.out.println("2. Coin Flipping Game");
+            System.out.println("3. Data Sorter");
+            System.out.println("4. Exit");
+
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume the newline character
+
+            switch (choice) {
+                case 1:
+                    System.out.println("You have chosen the Calculator!");
+                    System.out.println("Please enter the first number:");
+                    double num1 = scanner.nextDouble();
+                    System.out.println("Please enter the second number:");
+                    double num2 = scanner.nextDouble();
+                    scanner.nextLine(); // Consume the newline character
+                    System.out.println("Please enter the operation (+, -, *, /):");
+                    String operator = scanner.nextLine();
+
+                    double result = 0;
+                    switch (operator) {
+                        case "+":
+                            result = num1 + num2;
+                            break;
+                        case "-":
+                            result = num1 - num2;
+                            break;
+                        case "*":
+                            result = num1 * num2;
+                            break;
+                        case "/":
+                            result = num1 / num2;
+                            break;
+                        default:
+                            System.out.println("Invalid operator.");
+                            break;
+                    }
+
+                    System.out.println("Result: " + result);
+                    break;
+                case 2:
+                    System.out.println("You have chosen the Coin Flipping Game!");
+                    System.out.println("Please enter your choice: (T)ails or (H)eads");
+                    String coinChoice = scanner.nextLine().toLowerCase();
+                    boolean isHeads = random.nextBoolean();
+                    String resultMessage;
+                    if ((isHeads && (coinChoice.equals("h") || coinChoice.equals("heads")))
+                            || (!isHeads && (coinChoice.equals("t") || coinChoice.equals("tails")))) {
+                        resultMessage = "Good Job you called right!";
+                    } else {
+                        resultMessage = "Sorry you called wrong. Please try again.";
+                    }
+                    System.out.println("The coin landed on " + (isHeads ? "Heads" : "Tails") + ". " + resultMessage);
+                    break;
+                case 3:
+                    System.out.println("You have chosen the Data Sorter!");
+                    System.out.println("Please enter the titles of three sections of data:");
+                    String title1 = scanner.nextLine();
+                    String title2 = scanner.nextLine();
+                    String title3 = scanner.nextLine();
+                    System.out.println("Please enter three values to sort:");
+                    int value1 = scanner.nextInt();
+                    int value2 = scanner.nextInt();
+                    int value3 = scanner.nextInt();
+                    scanner.nextLine(); // Consume the newline character
+                    int smallest = Math.min(Math.min(value1, value2), value3);
+                    int largest = Math.max(Math.max(value1, value2), value3);
+                    int middle = value1 + value2 + value3 - smallest - largest;
+                    System.out.println(title1 + ": " + smallest);
+                    System.out.println(title2 + ": " + middle);
+                    System.out.println(title3 + ": " + largest);
+                    break;
+                case 4:
+                    System.out.println("Thank you for using the program. Goodbye!");
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+                    break;
+            }
+        }
+    }
+}
